@@ -28,13 +28,15 @@ const Feed = () => {
 
   const [posts, setPosts] = useState([]);
 
+  const fetchPosts = async () => {
+    const resposne = await fetch('/api/prompt');
+    const data = await resposne.json();
+    console.log("Posts data is here =", data);
+    setPosts(data);
+  }
+
   useEffect(() => {
-    const fetchPosts = async () => {
-      const resposne = await fetch('/api/prompt');
-      const data = await resposne.json();
-      console.log("Posts data is here =", data);
-      setPosts(data);
-    }
+    
     fetchPosts();
   }, []);
 
